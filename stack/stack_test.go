@@ -75,3 +75,12 @@ func TestMinMaxStackPushPop2(t *testing.T) {
 	assert.Equal(t, 2, minMaxStack.Peek())
 	assert.Equal(t, 2, minMaxStack.Pop())
 }
+
+func TestBalancedBrackets(t *testing.T) {
+	r := BalancedBrackets("aafwgaga()[]a{}{gggg")
+	assert.Equal(t, false, r)
+	r = BalancedBrackets("(((((([[[[[[{{{{{{{{{{{{()}}}}}}}}}}}}]]]]]]))))))((([])({})[])[])[]([]){}(())")
+	assert.Equal(t, true, r)
+	r = BalancedBrackets("(((((({{{{{safaf[[[[[([)]safsafsa)]]]]]}}}gawga}}))))))")
+	assert.Equal(t, false, r)
+}

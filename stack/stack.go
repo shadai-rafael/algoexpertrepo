@@ -116,16 +116,54 @@ func (stack *MinMaxStack) isEmpty() bool {
 /**********************************************
 *	Balanced Brackets
 ***********************************************/
+func getMatchBracketMap() map[rune]rune {
+	return map[rune]rune{
+		'(': ')',
+		'{': '}',
+		'[': ']',
+		')': '(',
+		'}': '{',
+		']': '[',
+	}
+}
 
-/*func BalancedBrackets(s string) bool {
-	// Write your code here.
-	return false
-}*/
+func getBracketToPush() map[rune]bool {
+	return map[rune]bool{
+		'(': true,
+		'{': true,
+		'[': true,
+		')': false,
+		'}': false,
+		']': false,
+	}
+}
+
+func BalancedBrackets(s string) bool {
+	var stack []rune
+	for _, r := range s {
+		if _, ok := getBracketToPush()[r]; ok {
+			if getBracketToPush()[r] {
+				stack = append(stack, r)
+			} else {
+				if 0 == len(stack) {
+					return false
+				} else if getMatchBracketMap()[r] == stack[len(stack)-1] {
+					stack = stack[:len(stack)-1]
+				} else {
+					return false
+				}
+			}
+		}
+	}
+	if 0 != len(stack) {
+		return false
+	}
+	return true
+}
 
 /**********************************************
 *	Sunset View
 ***********************************************/
-
 /*func SunsetViews(buildings []int, direction string) []int {
 	// Write your code here.
 	return []int{}
