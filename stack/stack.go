@@ -164,7 +164,41 @@ func BalancedBrackets(s string) bool {
 /**********************************************
 *	Sunset View
 ***********************************************/
-/*func SunsetViews(buildings []int, direction string) []int {
+/*it sucks but works*/
+func SunsetViews(buildings []int, direction string) []int {
+	r := []int{}
+	if len(buildings) == 0 {
+		return r
+	} else if direction == "WEST" {
+		hstb := buildings[0]
+		r = append(r, 0)
+		for i := 1; i < len(buildings); i += 1 {
+			if buildings[i] > buildings[r[len(r)-1]] && buildings[i] > hstb {
+				r = append(r, i)
+				if buildings[i] > hstb {
+					hstb = buildings[i]
+				}
+			}
+		}
+	} else if direction == "EAST" {
+		hstb := buildings[len(buildings)-1]
+		r = append([]int{len(buildings) - 1}, r...)
+		for i := len(buildings) - 2; i >= 0; i -= 1 {
+			if buildings[i] > buildings[r[len(r)-1]] && buildings[i] > hstb {
+				r = append([]int{i}, r...)
+				if buildings[i] > hstb {
+					hstb = buildings[i]
+				}
+			}
+		}
+	}
+	return r
+}
+
+/**********************************************
+*	Shorten Path
+***********************************************/
+/*func ShortenPath(path string) string {
 	// Write your code here.
-	return []int{}
+	return ""
 }*/

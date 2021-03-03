@@ -84,3 +84,16 @@ func TestBalancedBrackets(t *testing.T) {
 	r = BalancedBrackets("(((((({{{{{safaf[[[[[([)]safsafsa)]]]]]}}}gawga}}))))))")
 	assert.Equal(t, false, r)
 }
+func TestSunsetViews(t *testing.T) {
+	buildings := []int{3, 5, 4, 4, 3, 1, 3, 2}
+	expected := []int{0, 1}
+	r := SunsetViews(buildings, "WEST")
+	for i, index := range r {
+		assert.Equal(t, expected[i], index)
+	}
+	expected = []int{1, 3, 6, 7}
+	r = SunsetViews(buildings, "EAST")
+	for i, index := range r {
+		assert.Equal(t, expected[i], index)
+	}
+}
