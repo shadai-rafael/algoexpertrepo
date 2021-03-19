@@ -16,3 +16,21 @@ func TestProductSum(t *testing.T) {
 	array = append(array, 5, 2, SpecialArray{7, -1}, 3, SpecialArray{6, SpecialArray{-13, 8}, 4})
 	assert.Equal(t, 12, ProductSum(array))
 }
+
+func TestGetPermutations(t *testing.T) {
+	array := []int{1, 2, 3}
+	expected := [][]int{
+		{1, 2, 3},
+		{1, 3, 2},
+		{2, 1, 3},
+		{2, 3, 1},
+		{3, 1, 2},
+		{3, 2, 1},
+	}
+	result := GetPermutations(array);
+	for i:=0;i<len(expected); i++{
+		for j:=0;j<len(expected[i]);j++{
+			assert.Equal(t,expected[i][j], result[i][j]);
+		}
+	}
+}

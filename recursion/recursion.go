@@ -1,5 +1,7 @@
 package recursion
 
+//import "fmt"
+
 /**********************************************
 *	Nth Fibonacci
 ***********************************************/
@@ -33,4 +35,30 @@ func productSumHelper(array SpecialArray, d int) int {
 		}
 	}
 	return sum
+}
+
+/**********************************************
+*	Get Permutation
+***********************************************/
+func GetPermutations(array []int) [][]int {
+	var result [][]int;
+	getPermutationsHelper(array, make([]int, 0), &result)
+	return result;
+}
+
+func getPermutationsHelper(array []int, permBulider []int, perms *[][]int){
+	if len(array) == 0 && len(permBulider) != 0{
+		*perms = append(*perms,permBulider)
+		return
+	}
+	for i := 0; i < len(array); i++ {
+		tempArray := make([]int, i)
+		copy(tempArray, array[:i])
+		tempArray = append(tempArray, array[i+1:]...)
+		newPermBuilder := make([]int ,len(permBulider))
+		copy(newPermBuilder,permBulider)
+		newPermBuilder = append(newPermBuilder, array[i])
+		getPermutationsHelper(tempArray, newPermBuilder, perms)
+	}
+	return
 }
