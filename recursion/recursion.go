@@ -62,3 +62,26 @@ func getPermutationsHelper(array []int, permBulider []int, perms *[][]int){
 	}
 	return
 }
+
+/**********************************************
+*	Power Set
+***********************************************/
+func Powerset(array []int) [][]int {
+	return powersetHelper(array,len(array)-1)
+}
+
+func powersetHelper(array []int, index int) [][]int {
+	if index < 0 {
+		return [][]int{{}}
+	}
+	subsets := powersetHelper(array[:index],index-1);
+	for _,subset:= range(subsets){
+		newsubset := append([]int{},subset...)
+		currsubset := append(newsubset, array[index])
+		subsets = append(subsets, currsubset)
+	}
+	return subsets
+}
+
+
+
