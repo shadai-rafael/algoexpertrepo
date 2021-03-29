@@ -16,6 +16,12 @@ func TestBubbleSort(t *testing.T) {
 	for i := range(array){
 		assert.Equal(t, array[i], expected[i]);
 	}
+	array = []int{7,4,2,6}
+	array = BubbleSort(array)
+	expected = []int{2,4,6,7}
+	for i := range(array){
+		assert.Equal(t, array[i], expected[i]);
+	}
 }
 
 /**********************************************
@@ -30,6 +36,24 @@ func TestInsertionSort(t *testing.T) {
 	}
 	array = []int{7,4,2,6}
 	array = InsertionSort(array)
+	expected = []int{2,4,6,7}
+	for i := range(array){
+		assert.Equal(t, array[i], expected[i]);
+	}
+}
+
+/**********************************************
+*	Selection Sort
+***********************************************/
+func TestSelectionSort(t *testing.T) {
+	array := []int{3,2,1,0}
+	array = SelectionSort(array)
+	expected := []int{0,1,2,3}
+	for i := range(array){
+		assert.Equal(t, array[i], expected[i]);
+	}
+	array = []int{7,4,2,6}
+	array = SelectionSort(array)
 	expected = []int{2,4,6,7}
 	for i := range(array){
 		assert.Equal(t, array[i], expected[i]);
