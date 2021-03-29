@@ -1,5 +1,9 @@
 package sortalg
 
+import(
+//		"fmt"
+)
+
 /**********************************************
 *	Bubble Sort
 ***********************************************/
@@ -28,6 +32,22 @@ func InsertionSort(array []int) []int {
 		}
 	}
 	return array;
+}
+
+/**********************************************
+*	Selection Sort
+***********************************************/
+func SelectionSort(array []int) []int {
+	for i := range(array){
+		min := i
+		for j := i+1; j < len(array); j++ {
+			if array[min] > array[j]{
+				min = j
+			}
+		}
+		array[i], array[min] = array[min], array[i]
+	}
+	return array
 }
 
 /**********************************************
