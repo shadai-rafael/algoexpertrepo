@@ -30,3 +30,37 @@ func binarySearchHelper(array []int, target int, ll int, ul int) int {
 	}
 
 }
+
+/**********************************************
+*	Find Three Largest Numbers
+***********************************************/
+func FindThreeLargestNumbers(array []int) []int {
+	result := make([]int,3)
+	copy(result,array[:3])
+	sortingThreeLenghtArray(&array)
+	for i := 2; i<len(array);i++{
+		if array[i]>=result[2]{
+			result[0] = result[1]
+			result[1] = result[2]
+			result[2] = array[i]
+		}else if array[i]>=result[1]{
+			result[0] = result[1]
+			result[1] = array[i]
+		}else if array[i]>result[0]{
+			result[0] = array[i]
+		}
+	}
+	return result
+}
+
+func sortingThreeLenghtArray(array *[]int){
+	for i := range(*array){
+		min := i
+		for j := i+1; j < len(*array); j++ {
+			if (*array)[min] > (*array)[j]{
+				min = j
+			}
+		}
+		(*array)[i], (*array)[min] = (*array)[min], (*array)[i]
+	}
+}
