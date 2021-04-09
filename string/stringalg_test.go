@@ -5,7 +5,14 @@ import (
 
 	"github.com/stretchr/testify/assert"
 )
-
+/**********************************************
+*	Palindrome Check
+***********************************************/
+func TestIsPalindrome(t *testing.T) {
+	assert.Equal(t, true, IsPalindrome("abba"))
+	assert.Equal(t, true, IsPalindrome("abiba"))
+	assert.Equal(t, false, IsPalindrome("rafael"))
+}
 /**********************************************
 *	Caesar Cipher Encryptor
 ***********************************************/
